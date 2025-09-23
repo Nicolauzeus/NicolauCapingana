@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio - Nicolau Martins Capingana</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="assets/img/eu.jpg" type="image/x-icon">
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <!-- Header -->
+  <header id="header">
+    <img src="assets/img/eu.jpg" alt="Nicolau Martins Capingana" id="headerImage">
+    <h1>Nicolau Martins Capingana</h1>
+    <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  </header>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-content">
+      <button class="menu-arrow" onclick="showSection('sobre')">Sobre</button>
+      <button class="menu-arrow" onclick="showSection('projetos')">Projetos</button>
+      <button class="menu-arrow" onclick="showSection('certificados')">Certificados</button>
+      <button class="menu-arrow" onclick="showSection('contacto')">Contacto</button>
+      <button class="close-menu" onclick="closeMenu()">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Imagem central -->
+  <div class="center-img" id="mainImage">
+    <img src="assets/img/eu.jpg" alt="Nicolau Martins Capingana" id="profileImage">
+  </div>
+
+  <!-- Setas -->
+  <div class="arrows-container">
+    <div class="arrow-line line-sobre"></div>
+    <div class="arrow-line line-projetos"></div>
+    <div class="arrow-line line-certificados"></div>
+    <div class="arrow-line line-contacto"></div>
+    
+    <button class="arrow sobre-btn" onclick="showSection('sobre')">Sobre</button>
+    <button class="arrow projetos-btn" onclick="showSection('projetos')">Projetos</button>
+    <button class="arrow certificados-btn" onclick="showSection('certificados')">Certificados</button>
+    <button class="arrow contacto-btn" onclick="showSection('contacto')">Contacto</button>
+  </div>
+
+  <!-- Botão voltar ao topo -->
+  <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+  <!-- Seções -->
+  <section id="sobre">
+    <h2>Sobre Mim</h2>
+    <div class="section-content">
+      <h3>Introdução</h3>
+      <p>Olá! Sou <strong>Nicolau Martins Capingana</strong>, um estudante angolano de 21 anos apaixonado por tecnologia, programação web e segurança da informação. Minha jornada na tecnologia começou com a curiosidade de entender como as coisas funcionam por trás das telas e evoluiu para uma paixão por criar soluções que impactam positivamente a vida das pessoas.</p>
+      
+      <h3>Desenvolvimento</h3>
+      <p>Como entusiasta autodidata, dedico-me diariamente ao aprimoramento das minhas habilidades em desenvolvimento front-end e back-end, sempre buscando aprender novas tecnologias e metodologias. Além do desenvolvimento web, tenho grande interesse em segurança da informação, especialmente em técnicas de pentest e ethical hacking.</p>
+      
+      <p>Utilizo o GitHub não apenas para versionar meus projetos, mas também como plataforma de aprendizado colaborativo, onde compartilho conhecimento e aprendo com a comunidade de desenvolvedores. Acredito que a tecnologia tem o poder de transformar realidades e estou comprometido em usar minhas habilidades para criar um impacto positivo.</p>
+      
+      <h3>Conclusão</h3>
+      <p>Estou em constante evolução, buscando sempre novos desafios que me permitam crescer tanto profissionalmente quanto pessoalmente. Meu objetivo é me tornar um desenvolvedor full-stack com sólidos conhecimentos em segurança cibernética, capaz de criar soluções inovadoras e seguras que atendam às necessidades do mundo moderno.</p>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <h2>Projetos</h2>
+    <div class="section-content">
+      <div class="project-card">
+        <h3>AANGOSIF</h3>
+        <p><strong>Descrição:</strong> Projeto solidário desenvolvido com HTML, CSS, JavaScript e PHP para ajudar pessoas em Angola através de doações de alimentos e vestimentas. O sistema facilita a conexão entre doadores e pessoas em situação de vulnerabilidade.</p>
+        <p><strong>Tecnologias:</strong> HTML5, CSS3, JavaScript, PHP, MySQL</p>
+        <div class="project-links">
+          <a href="https://aangosif-ao.vercel.app/" class="project-link" target="_blank">🌐 Visitar Site</a>
+          <a href="https://github.com/Nicolauzeus/aangosif.ao.git" class="project-link" target="_blank">💻 Ver Código</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <h3>SeuPort</h3>
+        <p><strong>Descrição:</strong> Hub de portfólios desenvolvido com Next.js onde profissionais podem se cadastrar para oportunidades de freelance, trabalho por carteira assinada, voluntariado ou estágio remunerado.</p>
+        <p><strong>Tecnologias:</strong> Next.js, React, Node.js, MongoDB</p>
+        <div class="project-links">
+          <a href="https://pronto-lake.vercel.app/" class="project-link" target="_blank">🌐 Visitar Site</a>
+          <a href="https://github.com/Nicolauzeus/SeuPort.git" class="project-link" target="_blank">💻 Ver Código</a>
+        </div>
+      </div>
+      
+      <div class="project-card">
+        <h3>Sentinela Primeiro</h3>
+        <p><strong>Descrição:</strong> Ferramenta automatizada para pentest desenvolvida em Python, capaz de detectar vulnerabilidades XSS, realizar dorks e outras funcionalidades de segurança.</p>
+        <p><strong>Tecnologias:</strong> Python, Security Libraries, Web Scraping</p>
+        <div class="project-links">
+          <a href="#" class="project-link" target="_blank">🌐 Ver Demonstração</a>
+          <a href="#" class="project-link" target="_blank">💻 Ver Código</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificados">
+    <h2>Certificados</h2>
+    <div class="section-content">
+      <div class="certificates-grid">
+        <div class="certificate-card" onclick="openCertificate('cert1')">
+          <img src="assets/certificados/img/programaçaoweb.png" alt="Certificado de Programação Web" class="certificate-image">
+          <div class="certificate-caption">Programação Web</div>
+        </div>
+        <div class="certificate-card" onclick="openCertificate('cert2')">
+          <img src="assets/certificados/img/rockseat.png" alt="Certificado JavaScript Rocketseat" class="certificate-image">
+          <div class="certificate-caption">JavaScript - Rocketseat</div>
+        </div>
+        <div class="certificate-card" onclick="openCertificate('cert3')">
+          <img src="assets/certificados/img/adventofcyber.png" alt="Certificado Advent of Cybersecurity" class="certificate-image">
+          <div class="certificate-caption">Advent of Cybersecurity - TryHackMe</div>
+        </div>
+        <div class="certificate-card" onclick="openCertificate('cert4')">
+          <img src="assets/certificados/img/ipasolyd.png" alt="Certificado IAP Solyd" class="certificate-image">
+          <div class="certificate-caption">IAP Solyd - Introdução a Pentest</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="section-content">
+      <p>📱 <strong>Telefone:</strong> +55 85 98758-4347</p>
+      <p>📧 <strong>E-mails:</strong> <a href="mailto:capingananicolau@gmail.com">capingananicolau@gmail.com</a> | <a href="mailto:superdevs101.dev@gmail.com">superdevs101.dev@gmail.com</a></p>
+      <p>🔗 <strong>Redes Sociais:</strong></p>
+      <ul>
+        <li><a href="https://github.com/Nicolauzeus" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/nicolau-capingana-1b3460292/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://www.facebook.com/nicolaucapingana/" target="_blank">Facebook</a></li>
+      </ul>
+      <p style="margin-top: 20px;">Estou sempre aberto a novas oportunidades de aprendizado, colaboração em projetos interessantes e discussões sobre tecnologia. Sinta-se à vontade para entrar em contato!</p>
+    </div>
+  </section>
+
+  <!-- Modal Certificados -->
+  <div id="certificateViewer" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeCertificate()">&times;</span>
+      <div id="certificate-body">
+        <img id="full-certificate" src="" alt="Certificado Completo" style="width: 100%; max-height: 80vh; object-fit: contain;">
+        <div class="modal-footer">
+          <button onclick="downloadCertificate()">📥 Baixar Certificado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
