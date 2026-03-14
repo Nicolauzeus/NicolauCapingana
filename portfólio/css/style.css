@@ -135,25 +135,57 @@ header h1 {
   padding: 12px 20px;
   border: 2px solid #ff00ff;
   border-radius: 30px;
-  background: rgba(11, 0, 20, 0.9);
+  background: linear-gradient(135deg, rgba(18, 0, 31, 0.95), rgba(11, 0, 20, 0.85));
   color: #fff;
   cursor: pointer;
-  transition: 0.4s;
-  box-shadow: 0 0 10px #ff00ff;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.45s ease,
+              border-color 0.35s ease,
+              background 0.45s ease,
+              color 0.35s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.75), inset 0 0 12px rgba(255, 0, 255, 0.2);
   white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+  will-change: transform;
 }
 
 .arrow:hover {
-  background: #ff00ff;
+  background: linear-gradient(120deg, #ff00ff, #ff77ff 55%, #ff00ff);
   color: #0b0014;
-  box-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
-  transform: scale(1.05);
+  border-color: #ffd1ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.9), 0 0 45px rgba(255, 0, 255, 0.65);
+  transform: translateY(-4px) scale(1.045);
+}
+
+.arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 25%, rgba(255, 255, 255, 0.35) 45%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  z-index: -1;
+}
+
+.arrow:hover::before {
+  transform: translateX(120%);
+}
+
+.arrow:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 0 0 6px rgba(255, 0, 255, 0.65);
 }
 
 .sobre-btn       { top: 0; left: 50%; transform: translateX(-50%) translateY(-40px); }
 .projetos-btn    { top: 50%; right: 0; transform: translateY(-50%) translateX(40px); }
 .certificados-btn { bottom: 0; left: 50%; transform: translateX(-50%) translateY(40px); }
 .contacto-btn    { top: 50%; left: 0; transform: translateY(-50%) translateX(-40px); }
+
+.sobre-btn { animation: floatingTop 4.2s ease-in-out infinite; }
+.projetos-btn { animation: floatingRight 4.2s ease-in-out infinite 0.35s; }
+.certificados-btn { animation: floatingBottom 4.2s ease-in-out infinite 0.35s; }
+.contacto-btn { animation: floatingLeft 4.2s ease-in-out infinite; }
 
 /* Estado seção ativa */
 .section-active .arrows-container,
@@ -199,18 +231,21 @@ header h1 {
   width: 100%;
   padding: 15px;
   margin: 10px 0;
-  background: transparent;
+  background: linear-gradient(135deg, rgba(28, 1, 46, 0.8), rgba(11, 0, 20, 0.75));
   border: 2px solid #ff00ff;
   border-radius: 30px;
   color: #fff;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, background 0.35s ease;
+  box-shadow: 0 0 0 rgba(255, 0, 255, 0.2);
 }
 
 .menu-arrow:hover {
-  background: #ff00ff;
+  background: linear-gradient(120deg, #ff00ff, #ff77ff 55%, #ff00ff);
   color: #0b0014;
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(255, 0, 255, 0.6);
 }
 
 .close-menu {
@@ -374,6 +409,40 @@ a:hover { text-shadow: 0 0 10px #ff00ff; }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatingTop {
+  0%, 100% { transform: translateX(-50%) translateY(-40px); }
+  50% { transform: translateX(-50%) translateY(-48px); }
+}
+
+@keyframes floatingBottom {
+  0%, 100% { transform: translateX(-50%) translateY(40px); }
+  50% { transform: translateX(-50%) translateY(48px); }
+}
+
+@keyframes floatingRight {
+  0%, 100% { transform: translateY(-50%) translateX(40px); }
+  50% { transform: translateY(-50%) translateX(48px); }
+}
+
+@keyframes floatingLeft {
+  0%, 100% { transform: translateY(-50%) translateX(-40px); }
+  50% { transform: translateY(-50%) translateX(-48px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow,
+  .menu-arrow {
+    transition: none;
+  }
+
+  .sobre-btn,
+  .projetos-btn,
+  .certificados-btn,
+  .contacto-btn {
+    animation: none;
+  }
 }
 
 /* Responsividade */
