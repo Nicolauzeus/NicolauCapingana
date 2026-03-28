@@ -127,6 +127,7 @@ main { padding: 40px 5vw 80px; display: flex; flex-direction: column; gap: 80px;
 .chip-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip-grid .chip { background: var(--panel); border: 1px solid var(--border); color: var(--text); }
 .chip-grid .chip.strong { background: rgba(124, 248, 212, 0.14); border-color: rgba(124, 248, 212, 0.5); color: var(--primary); }
+.chip img { width: 18px; height: 18px; object-fit: contain; margin-right: 8px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35)); }
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .card { padding: 18px; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; }
 .card h4 { font-size: 1.2rem; }
