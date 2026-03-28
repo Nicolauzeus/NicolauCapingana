@@ -10,172 +10,186 @@
 <body>
   <canvas id="particles"></canvas>
 
-  <!-- Header -->
-  <header id="header">
-    <img src="assets/img/eu.jpg" alt="Nicolau Martins Capingana" id="headerImage">
-    <h1>Nicolau Martins Capingana</h1>
-    <button class="home-btn" onclick="goHome()">🏠 Home</button>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/img/eu.jpg" alt="Nicolau Martins Capingana" class="avatar" />
+      <div>
+        <p class="eyebrow">Desenvolvedor Web + Segurança</p>
+        <h1>Nicolau Martins Capingana</h1>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="ghost" id="briefToggle">Brief 60s</button>
+      <a class="ghost" href="mailto:capingananicolau@gmail.com?subject=Vamos%20conversar">Marcar call</a>
+      <a class="primary" href="assets/cv.pdf" download>Baixar CV</a>
+    </div>
   </header>
 
-  <!-- Menu Overlay -->
-  <div class="menu-overlay" id="menuOverlay">
-    <div class="menu-content">
-      <button class="menu-arrow" onclick="showSection('sobre')">Sobre</button>
-      <button class="menu-arrow" onclick="showSection('projetos')">Projetos</button>
-      <button class="menu-arrow" onclick="showSection('certificados')">Certificados</button>
-      <button class="menu-arrow" onclick="showSection('contacto')">Contacto</button>
-      <button class="close-menu" onclick="closeMenu()">Fechar</button>
-    </div>
-  </div>
-
-  <!-- Imagem central -->
-  <div class="center-img" id="mainImage">
-    <img src="assets/img/eu.jpg" alt="Nicolau Martins Capingana" id="profileImage">
-  </div>
-
-  <!-- Setas -->
-  <div class="arrows-container">
-    <div class="arrow-line line-sobre"></div>
-    <div class="arrow-line line-projetos"></div>
-    <div class="arrow-line line-certificados"></div>
-    <div class="arrow-line line-contacto"></div>
-    
-    <button class="arrow sobre-btn" onclick="showSection('sobre')">Sobre</button>
-    <button class="arrow projetos-btn" onclick="showSection('projetos')">Projetos</button>
-    <button class="arrow certificados-btn" onclick="showSection('certificados')">Certificados</button>
-    <button class="arrow contacto-btn" onclick="showSection('contacto')">Contacto</button>
-  </div>
-
-  <!-- Botão voltar ao topo -->
-  <button class="back-to-top" onclick="scrollToTop()">↑</button>
-
-  <!-- Seções -->
-  <section id="sobre">
-    <h2>Sobre Mim</h2>
-    <div class="section-content">
-      <p>Sou <strong>Nicolau Martins Capingana</strong>, estudante angolano de 22 anos, residente em Brasil, apaixonado por tecnologia com foco em desenvolvimento web e segurança da informação. Atuo como vibe coder "desenvolvedor assistido por IA" e entusiasta de segurança cibernética, criando soluções inovadoras que impactam positivamente a sociedade. Sou autodidata e em constante evolução, buscando sempre novos desafios para crescimento profissional.</p>
-      
-      <!-- Habilidades Organizadas -->
-      <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 25px;">
-        <!-- Segurança da Informação -->
-        <div style="flex: 1; min-width: 300px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 20px; backdrop-filter: blur(10px);">
-          <h3 style="margin-top: 0; color: #4fc3f7; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px;">🔍 Segurança da Informação</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">🛡️ NMAP - Varredura de redes</li>
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">🔎 OWASP ZAP - Teste de vulnerabilidades</li>
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">⚡ Burp Suite - Análise de aplicações web</li>
-            <li style="padding: 8px 0;">📊 Wireshark - Análise de tráfego</li>
-          </ul>
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="badge">Pronto para entregar rápido com IA + segurança</p>
+        <h2>Transformo ideias em produtos web seguros, com foco em velocidade, métricas e experiência.</h2>
+        <div class="hero-metrics">
+          <div class="metric">
+            <span class="number">+42%</span>
+            <span>crescimento médio em conversões</span>
+          </div>
+          <div class="metric">
+            <span class="number">12</span>
+            <span>projetos lançados em produção</span>
+          </div>
+          <div class="metric">
+            <span class="number">&lt;2s</span>
+            <span>LCP alvo em todas as páginas</span>
+          </div>
         </div>
-        
-        <!-- Programação Web -->
-        <div style="flex: 1; min-width: 300px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 20px; backdrop-filter: blur(10px);">
-          <h3 style="margin-top: 0; color: #4fc3f7; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px;">💻 Programação Web</h3>
-          <ul style="list-style: none; padding: 0;">
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">🌐 Front-end: HTML5, CSS3, JavaScript</li>
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">⚛️ Frameworks: Next.js, React</li>
-            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">🐍 Back-end: Python, PHP</li>
-            <li style="padding: 8px 0;">🗄️ Bancos de dados: MySQL, MongoDB</li>
-          </ul>
+        <div class="hero-ctas">
+          <a class="primary" href="#projeto-destaque">Ver case rápido</a>
+          <a class="ghost" href="#contacto">Contactar</a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/Nicolauzeus" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/nicolau-capingana-1b3460292/" target="_blank">LinkedIn</a>
+          <a href="https://www.facebook.com/nicolaucapingana/" target="_blank">Facebook</a>
         </div>
       </div>
-      
-      <p style="margin-top: 25px;">Estou em constante evolução, buscando sempre novos desafios que me permitam crescer tanto profissionalmente quanto pessoalmente. Meu objetivo é me tornar um desenvolvedor full-stack com sólidos conhecimentos em segurança cibernética, capaz de criar soluções inovadoras e seguras que atendam às necessidades do mundo moderno.</p>
-    </div>
-  </section>
+      <div class="hero-card">
+        <p class="tag">One-minute Brief</p>
+        <ul>
+          <li><strong>Stack</strong>: React / Next.js, Node/Python, Supabase, MongoDB, segurança ofensiva.</li>
+          <li><strong>Serviços</strong>: MVPs rápidos, pentest básico para apps web, otimização de conversão.</li>
+          <li><strong>Disponibilidade</strong>: Remoto, fuso Brasília (GMT-3), início em 1 semana.</li>
+          <li><strong>Contato</strong>: capingananicolau@gmail.com</li>
+        </ul>
+        <a class="primary" href="mailto:capingananicolau@gmail.com">Enviar briefing</a>
+      </div>
+    </section>
 
-  <section id="projetos">
-    <h2>Projetos</h2>
-    <div class="section-content">
-      <div class="project-card">
-        <h3>Back To Home</h3>
-        <p><strong>Descrição:</strong> Back To Home é uma plataforma que usa IA do Google Gemini Vision para comparar imagens e reunir o que foi perdido ao seu lar em horas, não dias.</p>
-        <p><strong>Tecnologias:</strong> Lovable, React, typeScript, supabase, gemini vision.</p>
-        <div class="project-links">
-          <a href="https://backtohome.lovable.app" class="project-link" target="_blank">🌐 Visitar Site</a>
+    <section id="projeto-destaque" class="feature">
+      <div class="section-header">
+        <p class="eyebrow">Case em destaque</p>
+        <h3>Back To Home — reencontro de itens perdidos usando IA vision</h3>
+        <p class="subtitle">Plataforma que compara imagens via Gemini Vision e devolve objetos ao dono em horas.</p>
+      </div>
+      <div class="feature-body">
+        <div class="walkthrough">
+          <div class="steps" id="steps"></div>
+          <div class="step-controls">
+            <button id="prevStep" aria-label="Passo anterior">←</button>
+            <div class="step-status" id="stepStatus"></div>
+            <button id="nextStep" aria-label="Próximo passo">→</button>
+          </div>
+        </div>
+        <div class="feature-meta">
+          <div class="chip">Role: Fullstack</div>
+          <div class="chip">Stack: React, TypeScript, Supabase, Gemini Vision</div>
+          <div class="chip">Impacto: redução do tempo médio de devolução para horas</div>
+          <a class="ghost" href="https://backtohome.lovable.app" target="_blank">Abrir demo</a>
         </div>
       </div>
-      
-      <div class="project-card">
-        <h3>Eva Agente IA pentester profisional</h3>
-        <p><strong>Descrição:</strong> Eva , um agente IA pentester profissional com interface de segurança cibernética moderna!
+    </section>
 
-.</p>
-        <p><strong>Tecnologias:</strong> Lovable, react, typescript</p>
-        <div class="project-links">
-          <a href="https://eva-your-pentest.lovable.app/" class="project-link" target="_blank">🌐 Visitar Site</a>
+    <section id="projetos" class="grid-section">
+      <div class="section-header">
+        <p class="eyebrow">Mais projetos</p>
+        <h3>Resultados variados em segurança e produto</h3>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <h4>Eva — Agente IA pentester</h4>
+          <p>Interface de segurança cibernética com automação de testes de penetração e insights acionáveis.</p>
+          <p class="stack">React · TypeScript</p>
+          <div class="card-actions"><a class="ghost" href="https://eva-your-pentest.lovable.app/" target="_blank">Ver live</a></div>
+        </article>
+        <article class="card">
+          <h4>Érica Alexandre</h4>
+          <p>Portfólio editorial para profissional de tranças com agendamento simples.</p>
+          <p class="stack">HTML · CSS · JS</p>
+          <div class="card-actions"><a class="ghost" href="https://erica-alexandre.vercel.app/" target="_blank">Ver site</a></div>
+        </article>
+        <article class="card">
+          <h4>Bizerra no corte</h4>
+          <p>Sistema de agendamento para barbearia com foco em mobile first.</p>
+          <p class="stack">HTML · CSS · JS</p>
+          <div class="card-actions"><a class="ghost" href="https://bizera-no-corte.vercel.app/" target="_blank">Ver site</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="certificados" class="grid-section">
+      <div class="section-header">
+        <p class="eyebrow">Validação</p>
+        <h3>Certificados</h3>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card" data-cert="assets/certificados/img/programaçaoweb.png">
+          <img src="assets/certificados/img/programaçaoweb.png" alt="Programação Web">
+          <p>Programação Web</p>
+        </div>
+        <div class="cert-card" data-cert="assets/certificados/img/rockseat.png">
+          <img src="assets/certificados/img/rockseat.png" alt="JavaScript Rocketseat">
+          <p>JavaScript - Rocketseat</p>
+        </div>
+        <div class="cert-card" data-cert="assets/certificados/img/adventofcyber.png">
+          <img src="assets/certificados/img/adventofcyber.png" alt="Advent of Cybersecurity">
+          <p>Advent of Cybersecurity - TryHackMe</p>
+        </div>
+        <div class="cert-card" data-cert="assets/certificados/img/ipasolyd.png">
+          <img src="assets/certificados/img/ipasolyd.png" alt="IAP Solyd">
+          <p>IAP Solyd - Introdução a Pentest</p>
         </div>
       </div>
-      
-      <div class="project-card">
-        <h3>Érica Alexandre</h3>
-        <p><strong>Descrição:</strong> Portfólio profissional de uma trancista.</p>
-        <p><strong>Tecnologias:</strong> HTML, CSS E JS</p>
-        <div class="project-links">
-          <a href="https://erica-alexandre.vercel.app/" class="project-link" target="_blank">🌐 Visitar Site</a>
-        </div>
-       </div> 
+    </section>
 
-        <div class="project-card">
-        <h3>Bizerra no corte</h3>
-        <p><strong>Descrição:</strong> Site de agendamento de corte de cabelo</p>
-        <p><strong>Tecnologias:</strong> HTML, CSS e Js</p>
-        <div class="project-links">
-          <a href="https://bizera-no-corte.vercel.app/" class="project-link" target="_blank">🌐 Visitar Site</a>
+    <section id="processo" class="grid-section">
+      <div class="section-header">
+        <p class="eyebrow">Como trabalho</p>
+        <h3>Processo rápido e transparente</h3>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><span>1</span>Brief de 30–60 minutos para mapear metas e riscos.</div>
+        <div class="timeline-item"><span>2</span>Protótipo navegável em 5–7 dias com métricas definidas.</div>
+        <div class="timeline-item"><span>3</span>Iterações semanais guiadas por dados (heatmaps, conversão).</div>
+        <div class="timeline-item"><span>4</span>Hardening básico: checklist OWASP, testes de fluxo crítico, monitoramento.</div>
+      </div>
+    </section>
+
+    <section id="contacto" class="cta">
+      <div>
+        <p class="eyebrow">Próximo passo</p>
+        <h3>Vamos colocar seu produto em produção com segurança e velocidade.</h3>
+        <p>Envie um briefing ou marque uma call. Respondo em até 24h.</p>
+        <div class="hero-ctas">
+          <a class="primary" href="mailto:capingananicolau@gmail.com">Enviar e-mail</a>
+          <a class="ghost" href="https://github.com/Nicolauzeus" target="_blank">Ver GitHub</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section id="certificados">
-    <h2>Certificados</h2>
-    <div class="section-content">
-      <div class="certificates-grid">
-        <div class="certificate-card" onclick="openCertificate('cert1')">
-          <img src="assets/certificados/img/programaçaoweb.png" alt="Certificado de Programação Web" class="certificate-image">
-          <div class="certificate-caption">Programação Web</div>
-        </div>
-        <div class="certificate-card" onclick="openCertificate('cert2')">
-          <img src="assets/certificados/img/rockseat.png" alt="Certificado JavaScript Rocketseat" class="certificate-image">
-          <div class="certificate-caption">JavaScript - Rocketseat</div>
-        </div>
-        <div class="certificate-card" onclick="openCertificate('cert3')">
-          <img src="assets/certificados/img/adventofcyber.png" alt="Certificado Advent of Cybersecurity" class="certificate-image">
-          <div class="certificate-caption">Advent of Cybersecurity - TryHackMe</div>
-        </div>
-        <div class="certificate-card" onclick="openCertificate('cert4')">
-          <img src="assets/certificados/img/ipasolyd.png" alt="Certificado IAP Solyd" class="certificate-image">
-          <div class="certificate-caption">IAP Solyd - Introdução a Pentest</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <div class="section-content">
-      <p>📱 <strong>Telefone:</strong> +55 85 98758-4347</p>
-      <p>📧 <strong>E-mails:</strong> <a href="mailto:capingananicolau@gmail.com">capingananicolau@gmail.com</a> | <a href="mailto:superdevs101.dev@gmail.com">superdevs101.dev@gmail.com</a></p>
-      <p>🔗 <strong>Redes Sociais:</strong></p>
-      <ul>
-        <li><a href="https://github.com/Nicolauzeus" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/nicolau-capingana-1b3460292/" target="_blank">LinkedIn</a></li>
-        <li><a href="https://www.facebook.com/nicolaucapingana/" target="_blank">Facebook</a></li>
-      </ul>
-      <p style="margin-top: 20px;">Estou sempre aberto a novas oportunidades de aprendizado, colaboração em projetos interessantes e discussões sobre tecnologia. Sinta-se à vontade para entrar em contato!</p>
-    </div>
-  </section>
-
-  <!-- Modal Certificados -->
-  <div id="certificateViewer" class="modal">
+  <div id="certificateViewer" class="modal" aria-hidden="true">
     <div class="modal-content">
-      <span class="close-modal" onclick="closeCertificate()">&times;</span>
-      <div id="certificate-body">
-        <img id="full-certificate" src="" alt="Certificado Completo" style="width: 100%; max-height: 80vh; object-fit: contain;">
-        <div class="modal-footer">
-          <button onclick="downloadCertificate()">📥 Baixar Certificado</button>
-        </div>
+      <button class="close-modal" aria-label="Fechar">×</button>
+      <img id="full-certificate" src="" alt="Certificado" />
+      <div class="modal-footer">
+        <button id="downloadCert">📥 Baixar</button>
       </div>
+    </div>
+  </div>
+
+  <div id="briefCard" class="brief-card" aria-hidden="true">
+    <div class="brief-content">
+      <div class="brief-header">
+        <p class="tag">Brief 60s</p>
+        <button id="closeBrief">×</button>
+      </div>
+      <ul>
+        <li><strong>Especialidade:</strong> web fullstack + segurança ofensiva.</li>
+        <li><strong>Entrega típica:</strong> MVP navegável em 1 semana.</li>
+        <li><strong>Recrutador:</strong> resumo técnico, disponibilidade imediata, remoto BR.</li>
+      </ul>
+      <a class="primary" href="mailto:capingananicolau@gmail.com">Compartilhar vaga</a>
     </div>
   </div>
 

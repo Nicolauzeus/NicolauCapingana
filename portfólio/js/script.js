@@ -1,117 +1,135 @@
-// ----------------------------
-// Controle de Seções
-// ----------------------------
-function showSection(id) {
-  document.body.classList.add('section-active');
+// Novo walkthrough, brief e certificados
 
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+const stepsData = [
+  {
+    title: 'Problema real',
+    text: 'Famílias perdiam dias procurando objetos. Precisávamos reduzir o tempo de devolução para poucas horas e manter privacidade.'
+  },
+  {
+    title: 'Solução',
+    text: 'Upload duplo de imagens, comparação via Gemini Vision, matching de similaridade com supabase e notificações automáticas.'
+  },
+  {
+    title: 'Resultado',
+    text: 'Tempo médio de retorno caiu para horas. Implementamos observabilidade básica e checklist OWASP para rotas críticas.'
+  }
+];
 
-  closeMenu();
-  document.querySelector('.back-to-top').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+let currentStep = 0;
+
+const stepsContainer = document.getElementById('steps');
+const stepStatus = document.getElementById('stepStatus');
+const prevStep = document.getElementById('prevStep');
+const nextStep = document.getElementById('nextStep');
+
+function renderStep(index) {
+  const step = stepsData[index];
+  stepsContainer.innerHTML = `
+    <div class="step">
+      <strong>${step.title}</strong>
+      <p>${step.text}</p>
+    </div>
+  `;
+  stepStatus.textContent = `${index + 1} / ${stepsData.length}`;
+  prevStep.disabled = index === 0;
+  nextStep.disabled = index === stepsData.length - 1;
 }
 
-function goHome() {
-  document.body.classList.remove('section-active');
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-  document.querySelector('.back-to-top').style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ----------------------------
-// Menu Overlay
-// ----------------------------
-function openMenu() {
-  document.getElementById('menuOverlay').classList.add('active');
-}
-
-function closeMenu() {
-  document.getElementById('menuOverlay').classList.remove('active');
-}
-
-// ----------------------------
-// Botão voltar ao topo
-// ----------------------------
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-window.addEventListener('scroll', () => {
-  const backToTopButton = document.querySelector('.back-to-top');
-  backToTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+prevStep.addEventListener('click', () => {
+  if (currentStep > 0) {
+    currentStep -= 1;
+    renderStep(currentStep);
+  }
 });
 
-// ----------------------------
-// Certificados
-// ----------------------------
-function openCertificate(certId) {
-  const viewer = document.getElementById('certificateViewer');
-  const fullCert = document.getElementById('full-certificate');
-
-  const certificates = {
-    'cert1': 'assets/certificados/img/programaçaoweb.png',
-    'cert2': 'assets/certificados/img/rockseat.png',
-    'cert3': 'assets/certificados/img/adventofcyber.png',
-    'cert4': 'assets/certificados/img/ipasolyd.png'
-  };
-
-  fullCert.src = certificates[certId] || '';
-  viewer.style.display = 'flex';
-}
-
-function closeCertificate() {
-  document.getElementById('certificateViewer').style.display = 'none';
-}
-
-function downloadCertificate() {
-  const currentCert = document.getElementById('full-certificate').src;
-  if (currentCert) {
-    const link = document.createElement('a');
-    link.href = currentCert;
-    link.download = 'certificado.jpg';
-    link.click();
+nextStep.addEventListener('click', () => {
+  if (currentStep < stepsData.length - 1) {
+    currentStep += 1;
+    renderStep(currentStep);
   }
+});
+
+renderStep(currentStep);
+
+// Certificados modal
+const certCards = document.querySelectorAll('.cert-card');
+const certModal = document.getElementById('certificateViewer');
+const fullCertImg = document.getElementById('full-certificate');
+const closeModalBtn = document.querySelector('.close-modal');
+const downloadBtn = document.getElementById('downloadCert');
+
+certCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const src = card.dataset.cert;
+    fullCertImg.src = src;
+    certModal.classList.add('open');
+    certModal.setAttribute('aria-hidden', 'false');
+  });
+});
+
+function closeCertModal() {
+  certModal.classList.remove('open');
+  certModal.setAttribute('aria-hidden', 'true');
 }
 
-// ----------------------------
-// Eventos extras
-// ----------------------------
-document.getElementById('headerImage').addEventListener('click', openMenu);
-document.getElementById('profileImage').addEventListener('click', () => {
-  if (!document.body.classList.contains('section-active')) {
-    openMenu();
-  }
+closeModalBtn.addEventListener('click', closeCertModal);
+certModal.addEventListener('click', (e) => { if (e.target === certModal) closeCertModal(); });
+
+downloadBtn.addEventListener('click', () => {
+  if (!fullCertImg.src) return;
+  const link = document.createElement('a');
+  link.href = fullCertImg.src;
+  link.download = 'certificado.png';
+  link.click();
+});
+
+// Brief card toggle
+const briefCard = document.getElementById('briefCard');
+const briefToggle = document.getElementById('briefToggle');
+const closeBrief = document.getElementById('closeBrief');
+
+briefToggle.addEventListener('click', () => {
+  const isOpen = briefCard.classList.toggle('open');
+  briefCard.setAttribute('aria-hidden', String(!isOpen));
+});
+closeBrief.addEventListener('click', () => {
+  briefCard.classList.remove('open');
+  briefCard.setAttribute('aria-hidden', 'true');
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    closeMenu();
-    closeCertificate();
+    closeCertModal();
+    briefCard.classList.remove('open');
+    briefCard.setAttribute('aria-hidden', 'true');
   }
 });
 
-document.addEventListener('click', (event) => {
-  const menuOverlay = document.getElementById('menuOverlay');
-  if (event.target === menuOverlay) closeMenu();
-
-  const certViewer = document.getElementById('certificateViewer');
-  if (event.target === certViewer) closeCertificate();
+// Suave para âncoras
+const anchorLinks = document.querySelectorAll('a[href^="#"]');
+anchorLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    const targetId = link.getAttribute('href').substring(1);
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      e.preventDefault();
+      targetEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
 });
 
-// ----------------------------
-// Partículas Neon
-// ----------------------------
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+// Partículas atualizadas
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
 let particlesArray;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-window.addEventListener("resize", () => {
+function setCanvasSize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', () => {
+  setCanvasSize();
   initParticles();
 });
 
@@ -130,9 +148,9 @@ class Particle {
     if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
   }
   draw() {
-    ctx.fillStyle = "#ff00ff";
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = "#ff00ff";
+    ctx.fillStyle = 'rgba(124, 248, 212, 0.8)';
+    ctx.shadowBlur = 14;
+    ctx.shadowColor = 'rgba(124, 248, 212, 0.8)';
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.closePath();
@@ -142,13 +160,13 @@ class Particle {
 
 function initParticles() {
   particlesArray = [];
-  const numberOfParticles = 50;
+  const numberOfParticles = 55;
   for (let i = 0; i < numberOfParticles; i++) {
-    const size = Math.random() * 3 + 1;
+    const size = Math.random() * 2 + 1;
     const x = Math.random() * canvas.width;
     const y = Math.random() * canvas.height;
-    const speedX = (Math.random() - 0.5) * 1.5;
-    const speedY = (Math.random() - 0.5) * 1.5;
+    const speedX = (Math.random() - 0.5) * 0.7;
+    const speedY = (Math.random() - 0.5) * 0.7;
     particlesArray.push(new Particle(x, y, size, speedX, speedY));
   }
 }
@@ -162,5 +180,6 @@ function animateParticles() {
   requestAnimationFrame(animateParticles);
 }
 
+setCanvasSize();
 initParticles();
 animateParticles();
