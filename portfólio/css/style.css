@@ -149,6 +149,9 @@ main { padding: 40px 5vw 80px; display: flex; flex-direction: column; gap: 80px;
 .close-modal { align-self: flex-end; border: none; background: var(--panel); color: var(--text); padding: 8px 12px; border-radius: 10px; cursor: pointer; }
 .close-modal:hover { background: var(--panel-strong); }
 
+.modal-content.profile { max-width: 540px; padding: 16px; }
+.modal-content.profile img { border-radius: 14px; box-shadow: var(--shadow); }
+
 .brief-card { position: fixed; right: 20px; bottom: 20px; background: #0b111a; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; width: min(360px, 90vw); box-shadow: var(--shadow); display: none; z-index: 30; }
 .brief-card.open { display: block; animation: fadeIn 0.2s ease; }
 .brief-content { display: flex; flex-direction: column; gap: 12px; }

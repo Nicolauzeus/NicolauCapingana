@@ -87,6 +87,10 @@ downloadBtn.addEventListener('click', () => {
 const briefCard = document.getElementById('briefCard');
 const briefToggle = document.getElementById('briefToggle');
 const closeBrief = document.getElementById('closeBrief');
+const avatar = document.querySelector('.avatar');
+const profileModal = document.getElementById('profileModal');
+const closeProfile = document.getElementById('closeProfile');
+const profileFull = document.getElementById('profileFull');
 
 briefToggle.addEventListener('click', () => {
   const isOpen = briefCard.classList.toggle('open');
@@ -97,11 +101,32 @@ closeBrief.addEventListener('click', () => {
   briefCard.setAttribute('aria-hidden', 'true');
 });
 
+function openProfile() {
+  if (!profileModal) return;
+  profileModal.classList.add('open');
+  profileModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeProfileModal() {
+  if (!profileModal) return;
+  profileModal.classList.remove('open');
+  profileModal.setAttribute('aria-hidden', 'true');
+}
+
+if (avatar) avatar.addEventListener('click', openProfile);
+if (closeProfile) closeProfile.addEventListener('click', closeProfileModal);
+if (profileModal) {
+  profileModal.addEventListener('click', (e) => {
+    if (e.target === profileModal) closeProfileModal();
+  });
+}
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     closeCertModal();
     briefCard.classList.remove('open');
     briefCard.setAttribute('aria-hidden', 'true');
+    closeProfileModal();
   }
 });
 
